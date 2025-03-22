@@ -1,0 +1,56 @@
+$primary-color: #FF3F80;
+
+mat-dialog-content {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: $primary-color;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h2[mat-dialog-title] {
+    font-size: 22px;
+    font-weight: bold;
+    color: $primary-color;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  mat-dialog-content div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+  }
+  
+  mat-icon {
+    color: $primary-color;
+
+  }
+  mat-dialog-actions {
+    padding: 15px;
+  }
+  
+  button[mat-button] {
+    background-color: $primary-color;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  }
+  

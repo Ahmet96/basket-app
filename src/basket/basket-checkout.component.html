@@ -1,0 +1,76 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="table-container">
+  <div class="card-table">
+    <div class="card-header">
+      Basket in items: {{basketTotalAmount}} <br />
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="productName">
+    <th mat-header-cell *matHeaderCellDef> Product Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="selectedQuantity">
+    <th mat-header-cell *matHeaderCellDef> Selected Quantity </th>
+    <td mat-cell *matCellDef="let element">
+      <select [(ngModel)]="element.selectedQuantity" 
+              (click)="element.previousQuantity = element.selectedQuantity"
+              (ngModelChange)="updatePrices(element, element.previousQuantity, $event)">
+        <option *ngFor="let q of getQuantityRange(element.selectedQuantity,element.firstQuantity)" [value]="q">
+          {{ q }}
+        </option>
+      </select>
+    </td>
+  </ng-container>
+  
+ <ng-container matColumnDef="unitPrice">
+    <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalPrice">
+    <th mat-header-cell *matHeaderCellDef> Total Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="removeBasket">
+    <th mat-header-cell *matHeaderCellDef> Remove All Basket </th>
+    <td mat-cell *matCellDef="let element">
+      <button class="custom-deleteButton"mat-fab 
+      (click)="removeBasket(element.basketSku,element.selectedQuantity)"> 
+        <mat-icon>delete</mat-icon>
+         </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<br />
+    <input matInput placeholder="Enter your Card Number"
+    [(ngModel)]="enteredCardNumber"
+    [ngClass]="{'has-error': enteredCardNumber !== customerCardNumber}" 
+    required maxlength="16" minlength="16" pattern="^[0-9]{16}$" />
+    
+<br />
+<br />
+Total Price: {{totalPrice}}
+<br />
+    <button mat-button routerLink="/">
+      <mat-icon class="reverse-arrow">arrow_forward</mat-icon>
+      <span>Continue Shopping</span>
+      <br/>
+    </button>
+    &nbsp;
+    <button class="custom-matbutton" mat-button (click)="IsValidCheckOut()" [disabled]="!dataSource || dataSource.length === 0">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Checkout</span>
+      </button>
+      
+    </div>
+  </div>
+</div>
+
+

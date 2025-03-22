@@ -1,0 +1,31 @@
+
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+    <mat-dialog-content>
+      <ng-container [ngSwitch]="data.type">
+        <!-- insufficientBasket -->
+        <div *ngSwitchCase="'insufficientBasket'">
+          <mat-icon color="primary">cancel</mat-icon>
+          <p>{{data.info}}</p>
+        </div>
+        <!-- validCardNumber -->
+        <div *ngSwitchCase="'validCardNumber'">
+          <mat-icon color="primary">check_circle</mat-icon>
+          <p>{{ data.message }}</p>
+          <p>{{data.info}}</p>
+        </div>
+        <!-- wrongCardNumber -->
+        <div *ngSwitchCase="'wrongCardNumber'">
+          <mat-icon color="primary">cancel</mat-icon>
+          <p>{{ data.message }}</p>
+          <p>{{data.info}}</p>
+        </div>
+        <!-- Default -->
+        <div *ngSwitchDefault>
+          <p>Default message</p>
+        </div>
+      </ng-container>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="closeDialog()">Close</button>
+    </mat-dialog-actions>
+    

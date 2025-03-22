@@ -1,0 +1,57 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="table-container">
+  <div class="card-table">
+    <div class="card-header">
+      Basket in items: {{totalBasketLimit}} <br />
+      Total Price: {{totalPrice}}
+<table mat-table [dataSource]="product()" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="basketLimit">
+    <th mat-header-cell *matHeaderCellDef> Basket Limit </th>
+    <td mat-cell *matCellDef="let element"> {{element.basketLimit}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addBasket">
+    <th mat-header-cell *matHeaderCellDef> Add Basket </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button (click)="increaseBasketLimit(element.sku,element.basketLimit);" > + </button>
+    </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="removeBasket">
+    <th mat-header-cell *matHeaderCellDef> Remove Basket </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button (click)="decreaseBasketLimit(element.sku,element.basketLimit);"> - </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<br />
+    <button mat-button routerLink="/checkout">
+      <mat-icon>arrow_forward</mat-icon>
+      <span>Proceed to Checkout</span>
+    </button>
+    </div>
+  </div>
+</div>
+
+

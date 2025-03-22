@@ -1,5 +1,5 @@
 {
-  "name": "3cx-project",
+  "name": "basket-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:3cx-project": "node dist/3cx-project/server/server.mjs"
+    "serve:ssr:basket-app": "node dist/basket-app/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -16,12 +16,16 @@
     "@angular/compiler": "^18.1.0",
     "@angular/core": "^18.1.0",
     "@angular/forms": "^18.1.0",
+    "@angular/material": "^18.2.14",
     "@angular/platform-browser": "^18.1.0",
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/platform-server": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@angular/ssr": "^18.1.2",
+    "bootstrap": "^5.3.3",
+    "crypto-js": "^4.2.0",
     "express": "^4.18.2",
+    "ngx-bootstrap": "^18.1.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

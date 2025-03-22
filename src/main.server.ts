@@ -1,7 +1,16 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideServerRendering } from '@angular/platform-server';
+import { provideRouter } from '@angular/router';
 import { AppComponent } from './app/app.component';
-import { config } from './app/app.config.server';
+import { routes } from './app/app.routes';
 
-const bootstrap = () => bootstrapApplication(AppComponent, config);
+export const bootstrap = async () => {
+  return bootstrapApplication(AppComponent, {
+    providers: [
+      provideServerRendering(), 
+      provideRouter(routes),
+    ],
+  });
+};
 
 export default bootstrap;
