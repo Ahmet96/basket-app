@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { BasketCheckoutService } from '../shared-services/basket-checkout.service';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -48,7 +48,7 @@ export class BasketCheckoutComponent {
 
   constructor(private encryptionService: EncryptionService,private dialog: MatDialog,private basketCheckoutService: BasketCheckoutService, private productListService: ProductListService) {}
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.getBasketItem();
     this.getProducts();
     this.combineServices();
@@ -56,7 +56,7 @@ export class BasketCheckoutComponent {
   }
 
 
-  IsValidCheckOut(){
+  IsValidCheckOut(): void {
     if(this.isCardNumberValid() === true) {
       this.dialog.open(MatDialogComponent, {
         data: {
@@ -85,7 +85,7 @@ export class BasketCheckoutComponent {
     return this.encryptedCardNumber;
   }  
 
-  isCardNumberValid():boolean {
+  isCardNumberValid(): boolean {
     return this.enteredCardNumber === this.customerCardNumber;
   }
 
@@ -94,7 +94,7 @@ export class BasketCheckoutComponent {
     return Array.from({ length: maxQuantity }, (_, i) => i + 1);
 }
 
-calculateTotalPrice() {
+calculateTotalPrice(): void {
   this.basketTotalAmount = this.dataSource.reduce((sum, item, index) => {
     const quantity = Number(item.selectedQuantity) || 0; 
     return sum + quantity;
@@ -112,7 +112,7 @@ calculateTotalPrice() {
   }
   
 
-updatePrices(element: any, previousQuantity: number, newQuantity: number) {
+updatePrices(element: any, previousQuantity: number, newQuantity: number): void {
   if (previousQuantity === undefined) {
       previousQuantity = element.selectedQuantity;
   }
@@ -137,7 +137,7 @@ updatePrices(element: any, previousQuantity: number, newQuantity: number) {
   }
 }
 
-  combineServices() {
+  combineServices(): void{
     combineLatest([
       this.basketCheckoutService.getBasketItems(),
       this.productListService.getProducts()
@@ -166,13 +166,13 @@ updatePrices(element: any, previousQuantity: number, newQuantity: number) {
   }
   
   
-  getBasketItem() {
+  getBasketItem(): void{
     this.basketCheckoutService.getBasketItems().subscribe(data => {
       this.basket = data;
     })
   }
 
-  getProducts() {
+  getProducts(): void {
     this.productListService.getProducts().subscribe(data => {
       this.product = data;
     })

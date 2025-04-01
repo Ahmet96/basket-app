@@ -39,7 +39,7 @@ ngOnInit(): void {
   this.getBasketItem();
 }
 
-checkBasketLimit(sku:number,basketLimit:number):void {
+checkBasketLimit(sku:number,basketLimit:number): void {
   const minBasketLimit = 0;
   const selectedProduct = this.products.find(p => p.sku === sku);
   const maxBasketLimit =  selectedProduct ? selectedProduct.basketLimit : null; 
@@ -78,7 +78,7 @@ calculateTotalPrice(productSku: number,totalBasketLimit:number): number {
 
 
 
-getBasketLimit(sku:number) {
+getBasketLimit(sku:number): number {
   const selectedProduct = this.products.find(p => p.sku === sku);
   return selectedProduct.basketLimit;
 }
@@ -112,7 +112,7 @@ increaseBasketLimit(productId: number,basketLimit:number): void {
   this.updateBasketLimit(productId, -1,basketLimit);
 }
 
-getProducts() {
+getProducts(): void {
   this.productService.getProducts().subscribe(data => {
     this.products = data;
     //for signal operations
@@ -120,7 +120,7 @@ getProducts() {
   })
 }
 
-getBasketItem() {
+getBasketItem(): void {
 this.basketService.getBasketItems().subscribe(data => {
   this.basketItem = data;
 })
